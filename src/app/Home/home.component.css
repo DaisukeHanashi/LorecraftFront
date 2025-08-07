@@ -1,0 +1,35 @@
+main
+{
+  background-image: url(../../assets/vintage-wallpaper-landing.jpg);
+  background-repeat: no-repeat;
+  background-size: cover; /* This makes the image fill the entire element */
+  background-position: center center; /* This centers the image */
+  background-attachment: fixed; /* Keeps the image fixed while scrolling */
+  box-shadow: 5px 5px 10px #888888;
+  opacity: 90%;
+  min-height: 99vh;
+}
+
+.message{
+  position: relative;
+  top: 300px;
+  left: 150px;
+  margin-left: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  color: white;
+  font-size: 50px;
+  min-width: 15px;
+}
+.contain{
+  min-width:1px;
+  word-wrap: break-word;
+  text-align: center;
+  text-shadow: 4px 4px 8px #000000;
+}
+
+
+
+
+
