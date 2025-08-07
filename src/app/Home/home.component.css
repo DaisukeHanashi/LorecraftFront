@@ -12,15 +12,15 @@ main
 
 .message{
   position: relative;
-  top: 300px;
-  left: 150px;
-  margin-left: 35px;
+  top: 18.75rem;
+  left: 9.375rem;
+  margin-left: 2.188rem;
   display: flex;
   align-items: center;
   justify-content: start;
   color: white;
-  font-size: 50px;
-  min-width: 15px;
+  font-size: 3.125rem;
+  min-width: 0.938rem;
 }
 .contain{
   min-width:1px;

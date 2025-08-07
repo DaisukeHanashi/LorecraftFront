@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Constants } from '../../../utilities/constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,15 +10,19 @@ import { Constants } from '../../../utilities/constants';
   styleUrl: './header-component.component.css'
 })
 export class HeaderComponentComponent {
-  public _constant : Constants;
   public _title : string;
-  constructor(constant : Constants)
+  constructor(private constant : Constants, private router : Router)
   {
-    this._constant = constant.instance;
-    this._title = this._constant.title;
+    this._title = this.constant.title;
   }
 
-
+  navigateToLogin() {
+    this.router.navigate(['/login']);
+  }
+  navigateToRegister()
+  {
+    this.router.navigate(['/signup'])
+  }
 
 
 }
