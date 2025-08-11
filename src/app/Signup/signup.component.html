@@ -1,1 +1,165 @@
-<p>signup works!</p>
+<main>
+  <div class="form-container">
+    <div class="signup-card">
+      <div class="signup-header">
+      <div class="logo-icon">
+          <img src="../../assets/lorecraft-bright.png" alt="" srcset="">
+      </div>
+      <div class="signup-description">
+            <h2>Be Your Own Chronicler!</h2>
+      </div>
+      </div>
+      <form [formGroup]="signUpForm" (ngSubmit)="handleRegister()" class="signup-form">
+
+        <div class="form-group" [class.error]="signUpForm.get('first_name')?.invalid && signUpForm.get('first_name')?.touched">
+          <div class="input-wrapper">
+             <input type="text" id="first-name" formControlName="first_name">
+             <label for="first-name">First Name</label>
+             <span class="input-border"></span>
+          </div>
+            @if(signUpForm.get('first_name')?.hasError('required') && signUpForm.get('first_name')?.touched){
+              <div class="error-message">First Name is required</div>
+              }
+            @else if(signUpForm.get('first_name')?.hasError('invalidInput') && signUpForm.get('first_name')?.touched){
+              <div class="error-message">Please input letters/word only</div>
+              }
+        </div>
+
+        <div class="form-group" [class.error]="signUpForm.get('middle_name')?.value && signUpForm.get('middle_name')?.invalid && signUpForm.get('middle_name')?.touched">
+          <div class="input-wrapper">
+                <input type="text" id="middle-name" formControlName="middle_name">
+             <label for="middle-name">Middle Name (Optional)</label>
+             <span class="input-border"></span>
+          </div>
+              @if(signUpForm.get('middle_name')?.value && signUpForm.get('middle_name')?.hasError('invalidInput') && signUpForm.get('middle_name')?.touched){
+              <div class="error-message">Please input letters/word only</div>
+              }
+        </div>
+
+          <div class="form-group" [class.error]="signUpForm.get('last_name')?.invalid && signUpForm.get('last_name')?.touched">
+          <div class="input-wrapper">
+                <input type="text" id="last-name" formControlName = "last_name">
+             <label for="last-name">Last Name</label>
+             <span class="input-border"></span>
+                 @if(signUpForm.get('last_name')?.hasError('required') && signUpForm.get('last_name')?.touched){
+              <div class="error-message">Last Name is required</div>
+              }
+            @else if(signUpForm.get('last_name')?.hasError('invalidInput') && signUpForm.get('last_name')?.touched){
+              <div class="error-message">Please input letters/word only</div>
+              }
+          </div>
+        </div>
+
+          <div class="form-group" [class.error]="signUpForm.get('pen_name')?.invalid && signUpForm.get('pen_name')?.touched">
+          <div class="input-wrapper">
+                <input type="text" id="pen-name" formControlName = "pen_name">
+             <label for="pen-name">Pen Name</label>
+             <span class="input-border"></span>
+          </div>
+              @if(signUpForm.get('pen_name')?.hasError('required') && signUpForm.get('pen_name')?.touched){
+              <div class="error-message">Pen Name is required</div>
+              }
+            @else if(signUpForm.get('pen_name')?.hasError('invalidInput') && signUpForm.get('pen_name')?.touched){
+              <div class="error-message">Please input letters/word only</div>
+              }
+        </div>
+
+        <div class="form-group" [class.error]="signUpForm.get('birthdate')?.invalid && signUpForm.get('birthdate')?.touched">
+          <div class="input-wrapper">
+              <input type="date" id="birth-date" formControlName = "birthdate">
+             <label for="birth-date">Birth Date</label>
+             <span class="input-border"></span>
+          </div>
+                @if(signUpForm.get('birthdate')?.hasError('required') && signUpForm.get('birthdate')?.touched){
+              <div class="error-message">Birth Date is required</div>
+              }
+        </div>
+
+          <div class="form-group" [class.error]="signUpForm.get('gender')?.invalid && signUpForm.get('gender')?.touched">
+          <div class="input-wrapper" >
+            <select type="radio" id="gender" formControlName = "gender">
+             <span class="input-border"></span>
+             <option value="" disabled selected>Select a Gender:</option>
+             @for (option of GenderOptions; track option){
+             <option ngValue={{option.value}}>
+              {{ option.label }}
+             </option>
+             }
+             </select>
+          </div>
+        </div>
+
+          <div class="form-group" [class.error]="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched">
+          <div class="input-wrapper">
+                <input type="email" id="email" formControlName = "email">
+             <label for="email">Email</label>
+             <span class="input-border"></span>
+               @if(signUpForm.get('email')?.hasError('required') && signUpForm.get('email')?.touched){
+              <div class="error-message">Email Address is required</div>
+              }
+              @else if(signUpForm.get('email')?.hasError('unidentifiedDomain') && signUpForm.get('email')?.touched){
+              <div class="error-message">Invalid Email Address</div>
+              }
+          </div>
+        </div>
+
+          <div class="form-group contact-group" [class.error]="signUpForm.get('contact_num')?.invalid && signUpForm.get('contact_num')?.touched">
+          <div class="input-wrapper">
+            <select id="country-code" name="countryCode" class="country-code-select" formControlName="country_code">
+              <option value="" disabled selected>Select a Code</option>
+              @for (country of CountryCodes; track CountryCodes)
+              {
+                <option ngValue={{country.code}}>{{country.label}}</option>
+              }
+            </select>
+                <input type="tel" id="contact-number" class="phone-number-input" formControlName="contact_num">
+             <label for="email">Contact Number</label>
+             <span class="input-border"></span>
+          </div>
+               @if(signUpForm.get('contact_num')?.hasError('required') && signUpForm.get('contact_num')?.touched){
+              <div class="error-message">Contact Number is required</div>
+              }
+              @else if(signUpForm.get('contact_num')?.hasError('invalidInput') && signUpForm.get('contact_num')?.touched){
+              <div class="error-message">Please input all numbers</div>
+              }
+        </div>
+
+          <div class="form-group" [class.error]="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched">
+          <div class="input-wrapper">
+                <input [type]="passwordFieldType" id="password" formControlName="password">
+             <label for="password">Password</label>
+                  <button type="button" class="password-toggle" (click)="togglePasswordVisibility($event)" id="password" aria-label="Toggle password visibility">
+                    <span class="toggle-icon" [class.show-password]="passwordFieldType === 'text'"></span>
+                 </button>
+             <span class="input-border"></span>
+          </div>
+              @if(signUpForm.get('password')?.hasError('required') && signUpForm.get('password')?.touched){
+              <div class="error-message">Password is required</div>
+              }
+              @else if(signUpForm.get('password')?.hasError('invalidStrength') && signUpForm.get('password')?.touched)
+              {
+                <div class="error-message">The password is weak</div>
+              }
+        </div>
+
+            <div class="form-group" [class.error]="signUpForm.get('confirm_password')?.invalid && signUpForm.get('confirm_password')?.touched">
+          <div class="input-wrapper">
+                <input [type]="confirmFieldType" id="confirm-password" formControlName = "confirm_password">
+             <label for="confirm-password">Confirm Password</label>
+                  <button type="button" class="password-toggle" (click)="togglePasswordVisibility($event)" id="confirm-password"  aria-label="Toggle password visibility">
+                    <span class="toggle-icon" [class.show-password]="confirmFieldType === 'text'"></span>
+                 </button>
+             <span class="input-border"></span>
+          </div>
+                @if(signUpForm.get('confirm_password')?.hasError('required') && signUpForm.get('confirm_password')?.touched){
+              <div class="error-message">Confirm Password is required</div>
+              }
+        </div>
+        <button type="submit" class="signup-btn">Register</button>
+          <div class="form-options">
+          <a routerLink="/login" class="redirect-to-login">Already have an account? Sign in instead</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

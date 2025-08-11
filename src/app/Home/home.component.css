@@ -1,3 +1,5 @@
+@import '../../fonts/fonts.scss';
+
 main
 {
   background-image: url(../../assets/vintage-wallpaper-landing.jpg);
@@ -5,9 +7,10 @@ main
   background-size: cover; /* This makes the image fill the entire element */
   background-position: center center; /* This centers the image */
   background-attachment: fixed; /* Keeps the image fixed while scrolling */
-  box-shadow: 5px 5px 10px #888888;
+  box-shadow: 25px 25px 50px black;
   opacity: 90%;
   min-height: 99vh;
+  width: 1900px;
 }
 
 .message{
@@ -19,6 +22,7 @@ main
   align-items: center;
   justify-content: start;
   color: white;
+  font-family: 'WastedVindey';
   font-size: 3.125rem;
   min-width: 0.938rem;
 }
