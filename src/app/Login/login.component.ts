@@ -18,9 +18,11 @@ loginForm!: FormGroup;
 isLoading : boolean = false;
 isSuccess : boolean = false;
 passwordFieldType = 'password';
+private readonly httpInstance : HttpService;
 
 
 constructor(private constant : Constants, private router: Router, private httpService : HttpService, private localService : LocalService) {
+this.httpInstance = httpService.instance;
 }
 
 ngOnInit(): void {
@@ -52,7 +54,7 @@ ngOnInit(): void {
     try {
       const loginCredentials = this.loginForm.value;
       const json = JSON.stringify(loginCredentials);
-      const response = await this.httpService.postJsonData(this.constant.account, json, this.constant.login);
+      const response = await this.httpInstance.postJsonData(this.constant.account, json, this.constant.login);
       const result = JSON.parse(response);
 
     if(this.constant.isAllOkay(result.code))
@@ -81,7 +83,7 @@ ngOnInit(): void {
 
       if(role === this.constant.admin)
       this.router.navigate(['/workspace']);
-    
+
     }, 3000);
   }
 

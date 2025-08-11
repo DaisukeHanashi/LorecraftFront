@@ -20,10 +20,12 @@ export class SignupComponent {
   passwordFieldType = 'password';
   confirmFieldType = 'password';
   isNotMatch = false;
+  private readonly httpInstance : HttpService;
 constructor(private constant : Constants, private router : Router, private functions : InternalFunctions, private httpService : HttpService)
 {
   this.GenderOptions = constant.genderOptions;
   this.CountryCodes = constant.CountryCodes;
+  this.httpInstance = httpService.instance;
 }
 
 ngOnInit() : void {
@@ -68,7 +70,7 @@ async handleRegister() : Promise<void> {
     const registration = this.signUpForm.value;
     const json = JSON.stringify(registration);
 
-    const response = await this.httpService.postJsonData(this.constant.account, json, this.constant.register);
+    const response = await this.httpInstance.postJsonData(this.constant.account, json, this.constant.register);
     const result = JSON.parse(response);
 
     console.log(result.code);
