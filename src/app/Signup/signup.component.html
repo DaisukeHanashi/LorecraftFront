@@ -155,7 +155,13 @@
               <div class="error-message">Confirm Password is required</div>
               }
         </div>
-        <button type="submit" class="signup-btn">Register</button>
+        <button type="submit" class="signup-btn" [disabled]="signUpForm.invalid || isLoading">
+          @if(!isLoading){
+          <span class="btn-text">Register</span>
+          }@else {
+            <span class="btn-loader"></span>
+          }
+        </button>
           <div class="form-options">
           <a routerLink="/login" class="redirect-to-login">Already have an account? Sign in instead</a>
         </div>

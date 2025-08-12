@@ -30,6 +30,7 @@ export class Constants
   //Keyword
   private readonly _login : string = "login";
   private readonly _register : string = "register";
+  private readonly _logout : string = "logout";
 
   //User Roles
   private readonly _regular : string = "Regular";
@@ -59,6 +60,10 @@ export class Constants
 
   isAllOkay(result_code : number) : boolean{
     return result_code >= 200 && result_code <= 299;
+  }
+
+  get logout() : string{
+    return this._logout;
   }
 
   get accountID() : string{

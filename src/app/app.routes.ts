@@ -5,5 +5,5 @@ export const routes: Routes = [
   { path: 'login', loadComponent: () => import('./Login/login.component').then(m => m.LoginComponent)},
   { path: 'signup', loadComponent: () => import('./Signup/signup.component').then(m => m.SignupComponent)},
   { path: 'adminWorkspace', loadComponent : () => import('./admin-workspace/admin-workspace.component').then(m => m.AdminWorkspaceComponent)},
-  { path: '', redirectTo: 'home', pathMatch: 'full'}
+  { path: '', redirectTo: 'adminWorkspace', pathMatch: 'full'}
 ];

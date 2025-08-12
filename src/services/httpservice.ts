@@ -62,6 +62,19 @@ export class HttpService{
   }
   }
 
+  async postSolely(dataType : string, keyword : string) : Promise<any>{
+    const url = `${this.apiUrl}${dataType}/${keyword}`;
+
+    try{
+      const response = await firstValueFrom(this.http.post(url, {}));
+      return JSON.stringify(response);
+    }catch(error)
+    {
+    console.error("Error posting json data:", error);
+    throw error;
+    }
+  }
+
 
 }
 

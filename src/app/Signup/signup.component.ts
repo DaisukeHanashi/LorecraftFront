@@ -20,6 +20,7 @@ export class SignupComponent {
   passwordFieldType = 'password';
   confirmFieldType = 'password';
   isNotMatch = false;
+  isLoading = false;
   private readonly httpInstance : HttpService;
 constructor(private constant : Constants, private router : Router, private functions : InternalFunctions, private httpService : HttpService)
 {
@@ -33,7 +34,7 @@ ngOnInit() : void {
 
  this.signUpForm = new FormGroup({
     first_name: new FormControl('', [Validators.required, internalInstance.allLettersValidator]),
-    middle_name: new FormControl('', [internalInstance.allLettersValidator]),
+    middle_name: new FormControl(''),
     last_name: new FormControl('', [Validators.required, internalInstance.allLettersValidator]),
     pen_name: new FormControl('', [Validators.required, internalInstance.allLettersValidator]),
     birthdate : new FormControl('', [Validators.required]),
@@ -48,12 +49,11 @@ ngOnInit() : void {
 
 
 async handleRegister() : Promise<void> {
-  console.log("Button clicked");
 
   const originalPassword = this.signUpForm.get('password')?.value;
   const confirmPassword = this.signUpForm.get('confirm_password')?.value;
 
-  if(this.functions.IsConfirmTheSameToOriginal(originalPassword, confirmPassword))
+  if(!this.functions.IsConfirmTheSameToOriginal(originalPassword, confirmPassword))
   {
     alert("Passwords don't match");
     return;
@@ -65,6 +65,9 @@ async handleRegister() : Promise<void> {
     return;
   }
 
+  this.isLoading = true;
+
+
   try
   {
     const registration = this.signUpForm.value;
@@ -73,7 +76,6 @@ async handleRegister() : Promise<void> {
     const response = await this.httpInstance.postJsonData(this.constant.account, json, this.constant.register);
     const result = JSON.parse(response);
 
-    console.log(result.code);
 
     if(this.constant.isAllOkay(result.code))
       this.navigateToLoginScreen()
@@ -83,6 +85,8 @@ async handleRegister() : Promise<void> {
   } catch(error)
   {
     console.error('Authentication failed:', error);
+  }finally{
+    this.isLoading = false;
   }
 }
 

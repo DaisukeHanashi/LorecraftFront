@@ -1,0 +1,23 @@
+<div class="pane">
+  <div class="logo-icon">
+    <img src="../../assets/lorecraft-icon-logo-transparent.png" alt="" srcset="">
+  </div>
+  <nav>
+    <div class="account-management-nav">
+      <img src="../../assets/user-group.png" alt="Freepik" srcset="">
+      <a href="#">ACCOUNTS</a>
+    </div>
+    <div class="activity-logs-nav">
+      <img src="../../assets/activity-logs.png" alt="Freepik" srcset="">
+      <a href="#">CHECK LOGS</a>
+    </div>
+  </nav>
+  <button class="logout-icon" (click)="logOut()" [disabled]="isLoading">
+    @if(!isLoading){
+    <img src="../../assets/logout.png" alt="" srcset="">
+    <h2>LOG OUT</h2>
+    }@else {
+      <span class="loader"></span>
+    }
+  </button>
+</div>

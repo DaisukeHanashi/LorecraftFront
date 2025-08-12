@@ -340,24 +340,30 @@ main {
     background: #94a3b8;
 }
 
+.login-btn span{
+  padding : 6px 15px;
+}
+
 .btn-text {
     transition: opacity 0.3s ease;
 }
 
 .btn-loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 18px;
-    height: 18px;
-    border: 2px solid transparent;
-    border-top: 2px solid white;
-    border-radius: 50%;
-    opacity: 0;
-    animation: spin 1s linear infinite;
-    transition: opacity 0.3s ease;
-}
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      position: relative;
+      animation: spin 1s linear infinite
+    }
+    .btn-loader::before {
+      content: "";
+      box-sizing: border-box;
+      position: absolute;
+      inset: 0px;
+      border-radius: 50%;
+      border: 5px solid #FFF;
+      animation: clipFix 2s linear infinite ;
+    }
 
 .login-btn.loading .btn-text {
     opacity: 0;
@@ -529,11 +535,18 @@ main {
     font-size: 15px;
 }
 
+ @keyframes spin {
+      100%   {transform: rotate(360deg)}
+    }
+
 /* Animations */
-@keyframes spin {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
+    @keyframes clipFix {
+        0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+        25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+        50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+        75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+        100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+    }
 
 /* Mobile Responsive */
 @media (max-width: 480px) {
